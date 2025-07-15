@@ -2,22 +2,28 @@
 // const newTaskDescription = documentBaseURL.getElementById("new-task-description");
 
 document.addEventListener('DOMContentLoaded', function(){
-  document.querySelector('form').addEventListener('submit', (e) =>  {
+  const form = document.querySelector('form')
+  form.addEventListener('submit', (e) =>  {
     e.preventDefault();
-    addToDo(e.target['new-task-description'].value);
+    buildToDo(e.target['new-task-description'].value);
   })
 
-  function addToDo(todo){
+  function buildToDo(task){
     const p = document.createElement('p');
     const btn = document.createElement('button');
+
+    p.style.fontSize = '20px';
+    btn.style.fontSize = '15px';
     
-    p.textContent = ` ${todo} `;
+    p.textContent = ` ${task} `;
     btn.textContent = 'Deletrius!';
 
     document.getElementById('tasks').appendChild(p);
     p.appendChild(btn).addEventListener('click', function(e) {
       e.preventDefault();
       p.remove();
-    })  
+    }) 
+    
+    form.querySelector('#new-task-description').value = '';
   }
 })
